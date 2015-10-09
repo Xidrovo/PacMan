@@ -12,9 +12,18 @@ public class MovimientoPacman : MonoBehaviour {
         Atributos.Speed = 5;
 	
 	}
-	
-	// Update is called once per frame
-	void Update () {
+    void OnCollisionEnter2D(Collision2D other)
+    {
+        if (other.gameObject.CompareTag("Bloque"))
+        {
+            Renderer rend = other.gameObject.GetComponent<Renderer>();
+            rend.enabled = true;
+            Collider2D coll = other.gameObject.GetComponent<Collider2D>();
+            coll.isTrigger = true;
+        }
+    }
+    // Update is called once per frame
+    void Update () {
 
         if (Input.GetKey(KeyCode.UpArrow))
         {
@@ -48,10 +57,12 @@ public class MovimientoPacman : MonoBehaviour {
         {
             case 1:
             {
-                this.GetComponent<Rigidbody2D>().AddForce(new Vector2(0, 1) * Atributos.Speed, ForceMode2D.Force);
+                    this.GetComponent<Rigidbody2D>().velocity = this.GetComponent<Rigidbody2D>().velocity.normalized * Atributos.Speed;
+                //this.GetComponent<Rigidbody2D>().AddForce(new Vector2(0, 1) * Atributos.Speed, ForceMode2D.Force);
                 //this.transform.Translate(Vector3.up*Atributos.Speed*Time.deltaTime);
                 break;
-            }
+                    //rigidbody2D.velocity = rigidbody2D.velocity.normalized * speed;
+                }
             case 2:
             {
                 this.GetComponent<Rigidbody2D>().AddForce(new Vector2(0, -1) * Atributos.Speed, ForceMode2D.Force);
