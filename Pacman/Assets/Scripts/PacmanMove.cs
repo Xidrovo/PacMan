@@ -33,6 +33,10 @@ public class PacmanMove : MonoBehaviour {
         }
         if (other.gameObject.CompareTag("Pastilla"))
         {
+            
+            this.GetComponent<Animator>().runtimeAnimatorControllers = GameObject.Find("PacFlash.controller");
+
+
             other.gameObject.SetActive(false);
         }
         if (other.gameObject.CompareTag("Punto"))
