@@ -49,7 +49,7 @@ public class PacmanMove : MonoBehaviour {
         if (other.gameObject.CompareTag("Pastilla"))
         {
             other.gameObject.SetActive(false);
-            int prob=Random.Range(1, 2);
+            int prob=Random.Range(2, 2);
             switch (prob)
             {
                 case 1:
@@ -61,7 +61,8 @@ public class PacmanMove : MonoBehaviour {
                     }
                 case 2:
                     {
-                        Atributos.PTime = 2; 
+                        Atributos.PTime = 2;
+                        this.GetComponent<Animator>().runtimeAnimatorController = hulk;
                         this.personaje = "hulk";
                         break;
                     }
