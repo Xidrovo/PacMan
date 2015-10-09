@@ -4,8 +4,8 @@ using System.Collections;
 
 public class PacmanMove : MonoBehaviour {
 
-    public int speed;
     public string personaje;
+    public RuntimeAnimatorController default1, flash, superman, hulk, daredevil,aquaman;
     public Text textoPuntaje;
 
     private int puntaje;
@@ -16,10 +16,25 @@ public class PacmanMove : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
         personaje = "pacman";
-        speed = 5;
         puntaje = 0;
         direccion = new Vector3(0.0f, 0.0f, 0.0f);
         textoPuntaje.text = "Score: " + puntaje.ToString();
+        InvokeRepeating("TiempoDePoder",0,1);
+    }
+
+    public void TiempoDePoder()
+    {
+        if (Atributos.PTime > 0)
+        {
+            Atributos.PTime--;
+        }
+        else 
+        {
+            this.GetComponent<Animator>().runtimeAnimatorController = default1;
+            Atributos.PTime = 0;
+            this.personaje = "pacman";
+            Atributos.Speed = 5;
+        }
     }
 
     void OnCollisionEnter2D(Collision2D other)
@@ -33,11 +48,25 @@ public class PacmanMove : MonoBehaviour {
         }
         if (other.gameObject.CompareTag("Pastilla"))
         {
-            
-            this.GetComponent<Animator>().runtimeAnimatorControllers = GameObject.Find("PacFlash.controller");
-
-
             other.gameObject.SetActive(false);
+            int prob=Random.Range(1, 2);
+            switch (prob)
+            {
+                case 1:
+                    {
+                        Atributos.PTime = 3; 
+                        Atributos.Speed *= 3f;
+                        this.GetComponent<Animator>().runtimeAnimatorController = flash;
+                        break;
+                    }
+                case 2:
+                    {
+                        Atributos.PTime = 2; 
+                        this.personaje = "hulk";
+                        break;
+                    }
+            }
+            
         }
         if (other.gameObject.CompareTag("Punto"))
         {
@@ -47,7 +76,8 @@ public class PacmanMove : MonoBehaviour {
         }
     }
 
-    void FixedUpdate () {
+    void FixedUpdate () 
+    {
         if (Input.GetKey(KeyCode.UpArrow) )
         {
             direccion = Vector3.up;
@@ -71,7 +101,7 @@ public class PacmanMove : MonoBehaviour {
             transform.rotation = Quaternion.identity;
             this.GetComponent<Transform>().Rotate(new Vector3(0,1,0) * 180);
         }
-        transform.position += direccion * speed * Time.deltaTime;
+        transform.position += direccion * Atributos.Speed * Time.deltaTime;
     }
     
 }

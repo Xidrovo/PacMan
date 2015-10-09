@@ -3,8 +3,8 @@ using System.Collections;
 
 public class Atributos : MonoBehaviour {
 
-    public static float Speed;
-    public static int Poder;
+    public static float Speed=5;
+    public static int PTime=0;
 
 
 	// Use this for initialization
