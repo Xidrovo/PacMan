@@ -55,7 +55,7 @@ public class PacmanMove : MonoBehaviour {
                 case 1:
                     {
                         Atributos.PTime = 3; 
-                        Atributos.Speed *= 3f;
+                        Atributos.Speed *= 2.2f;
                         this.GetComponent<Animator>().runtimeAnimatorController = flash;
                         break;
                     }
