@@ -1,10 +1,13 @@
 fileFormatVersion: 2
 guid: bd9c038c3f2a0d544b9c7d80340eb368
-timeCreated: 1444341452
+timeCreated: 1444679098
 licenseType: Free
 TextureImporter:
   fileIDToRecycleName:
     21300000: pacmansprites2_0
+    21300002: pacmansprites2_1
+    21300004: pacmansprites2_2
+    21300006: pacmansprites2_3
   serializedVersion: 2
   mipmaps:
     mipMapMode: 0
@@ -58,6 +61,36 @@ TextureImporter:
         y: 90
         width: 8
         height: 8
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: pacmansprites2_1
+      rect:
+        serializedVersion: 2
+        x: 86
+        y: 182
+        width: 16
+        height: 15
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: pacmansprites2_2
+      rect:
+        serializedVersion: 2
+        x: 85
+        y: 162
+        width: 19
+        height: 17
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: pacmansprites2_3
+      rect:
+        serializedVersion: 2
+        x: 83
+        y: 142
+        width: 20
+        height: 17
       alignment: 0
       pivot: {x: .5, y: .5}
       border: {x: 0, y: 0, z: 0, w: 0}
