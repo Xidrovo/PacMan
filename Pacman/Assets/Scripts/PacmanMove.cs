@@ -5,9 +5,10 @@ using System.Collections;
 public class PacmanMove : MonoBehaviour {
 
     public string personaje;
-    public RuntimeAnimatorController default1, flash, superman, hulk, daredevil,aquaman;
+//    public RuntimeAnimatorController default1, flash, superman, hulk, daredevil,aquaman;
     public Text textoPuntaje;
 
+    private Animator Anim;
     private int puntaje;
     //{"pacman", "superman", "ironman", "hulk", "flash", "daredevil", "batman", "aquaman" };
 
@@ -21,6 +22,7 @@ public class PacmanMove : MonoBehaviour {
         textoPuntaje.text = "Score: " + puntaje.ToString();
         InvokeRepeating("TiempoDePoder",0,1);
         direccion = Vector3.right;
+        Anim = this.GetComponent<Animator>();
     }
 
     public void TiempoDePoder()
@@ -31,7 +33,8 @@ public class PacmanMove : MonoBehaviour {
         }
         else 
         {
-            this.GetComponent<Animator>().runtimeAnimatorController = default1;
+            //            this.GetComponent<Animator>().runtimeAnimatorController = default1;
+            Anim.SetInteger("Estado", (int)Atributos.Estados.PACMAN);
             Atributos.PTime = 0;
             this.personaje = "pacman";
             Atributos.Speed = 5;
@@ -50,7 +53,7 @@ public class PacmanMove : MonoBehaviour {
         if (other.gameObject.CompareTag("Pastilla"))
         {
             other.gameObject.SetActive(false);
-            int prob=Random.Range(1, 3);
+            int prob=Random.Range(1, 8);
             switch (prob)
             {
                 case 1:
@@ -58,15 +61,47 @@ public class PacmanMove : MonoBehaviour {
                         this.personaje = "flash";
                         Atributos.PTime = 3; 
                         Atributos.Speed *= 2.2f;
-                        this.GetComponent<Animator>().runtimeAnimatorController = flash;
+                        //this.GetComponent<Animator>().runtimeAnimatorController = flash;
+                        Anim.SetInteger("Estado",(int) Atributos.Estados.FLASH);
                         break;
                     }
                 case 2:
                     {
                         Atributos.PTime = 2;
-                        this.GetComponent<Animator>().runtimeAnimatorController = hulk;
+                        //this.GetComponent<Animator>().runtimeAnimatorController = hulk;
+                        Anim.SetInteger("Estado", (int) Atributos.Estados.HULK);
                         this.personaje = "hulk";
                         Atributos.Speed = 3;
+                        break;
+                    }
+                case 3:
+                    {
+                        Atributos.PTime = 3;
+                        Anim.SetInteger("Estado", (int) Atributos.Estados.AQUAMAN);
+                        break;
+                    }
+                case 4:
+                    {
+                        Atributos.PTime = 3;
+                        Anim.SetInteger("Estado", (int)Atributos.Estados.BATMAN);
+                        break;
+                    }
+                case 5:
+                    {
+                        Atributos.PTime = 3;
+                        Anim.SetInteger("Estado", (int)Atributos.Estados.DAREDEVIL);
+                        break;
+                    }
+                case 6:
+                    {
+                        Atributos.PTime = 3;
+                        Anim.SetInteger("Estado", (int)Atributos.Estados.IRONMAN);
+                        break;
+                    }
+                case 7:
+                    {
+                        Atributos.PTime = 3;
+                        Anim.SetInteger("Estado", (int)Atributos.Estados.SUPERMAN);
                         break;
                     }
             }
@@ -88,7 +123,8 @@ public class PacmanMove : MonoBehaviour {
             transform.rotation = Quaternion.identity; // lo deja en la rotacion inicial
             this.GetComponent<Transform>().Rotate(Vector3.forward * 90);// rota a pacman en la direccion que va
         }
-        else if (Input.GetKey(KeyCode.DownArrow))
+//        else if (Input.GetKey(KeyCode.DownArrow))
+          else if (Input.GetKey(KeyCode.RightArrow) && Input.GetKey(KeyCode.LeftArrow))
         {
             direccion = Vector3.down;
             transform.rotation = Quaternion.identity;

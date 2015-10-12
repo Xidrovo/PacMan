@@ -12,7 +12,8 @@ public class Atributos : MonoBehaviour {
         BATMAN,
         DAREDEVIL,
         IRONMAN,
-        SUPERMAN
+        SUPERMAN,
+        FLASH
     };
 
     public static float Speed =5;
