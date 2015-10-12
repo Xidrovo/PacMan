@@ -20,6 +20,7 @@ public class PacmanMove : MonoBehaviour {
         direccion = new Vector3(0.0f, 0.0f, 0.0f);
         textoPuntaje.text = "Score: " + puntaje.ToString();
         InvokeRepeating("TiempoDePoder",0,1);
+        direccion = Vector3.right;
     }
 
     public void TiempoDePoder()
@@ -41,19 +42,20 @@ public class PacmanMove : MonoBehaviour {
     {
         if (other.gameObject.CompareTag("Bloque") && this.personaje.Equals("hulk") )
         {
-            Renderer rend = other.gameObject.GetComponent<Renderer>();
-            rend.enabled = true;
+            SpriteRenderer Srend = other.gameObject.GetComponent<SpriteRenderer>();
+            Srend.enabled = true;
             Collider2D coll = other.gameObject.GetComponent<Collider2D>();
             coll.isTrigger = true;
         }
         if (other.gameObject.CompareTag("Pastilla"))
         {
             other.gameObject.SetActive(false);
-            int prob=Random.Range(2, 2);
+            int prob=Random.Range(1, 3);
             switch (prob)
             {
                 case 1:
                     {
+                        this.personaje = "flash";
                         Atributos.PTime = 3; 
                         Atributos.Speed *= 2.2f;
                         this.GetComponent<Animator>().runtimeAnimatorController = flash;
@@ -64,6 +66,7 @@ public class PacmanMove : MonoBehaviour {
                         Atributos.PTime = 2;
                         this.GetComponent<Animator>().runtimeAnimatorController = hulk;
                         this.personaje = "hulk";
+                        Atributos.Speed = 3;
                         break;
                     }
             }

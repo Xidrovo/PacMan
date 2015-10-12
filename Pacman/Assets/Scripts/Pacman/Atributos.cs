@@ -1,9 +1,21 @@
 ﻿using UnityEngine;
 using System.Collections;
 
+
 public class Atributos : MonoBehaviour {
 
-    public static float Speed=5;
+    public enum Estados
+    {
+        PACMAN,
+        HULK,
+        AQUAMAN,
+        BATMAN,
+        DAREDEVIL,
+        IRONMAN,
+        SUPERMAN
+    };
+
+    public static float Speed =5;
     public static int PTime=0;
 
 
