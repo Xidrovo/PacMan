@@ -41,7 +41,7 @@ public class PacmanMove : MonoBehaviour {
         }
     }
 
-    void OnTriggerEnter2D(Collision2D other)
+    void OnTriggerEnter2D(Collider2D other)
     {
         if (other.gameObject.CompareTag("Pastilla"))
         {
@@ -56,7 +56,7 @@ public class PacmanMove : MonoBehaviour {
                         Atributos.Speed *= 2.2f;
                         //this.GetComponent<Animator>().runtimeAnimatorController = flash;
                         Anim.SetInteger("Estado",(int) Atributos.Estados.FLASH);
-                        this.GetComponent<AudioSource>().clip = Flash;
+      //                  this.GetComponent<AudioSource>().clip = Flash;
                         break;
                     }
                 case 2:
@@ -66,48 +66,48 @@ public class PacmanMove : MonoBehaviour {
                         Anim.SetInteger("Estado", (int) Atributos.Estados.HULK);
                         PacmanMove.personaje = "hulk";
                         Atributos.Speed = 3;
-                        this.GetComponent<AudioSource>().clip = Hulk;
-                        this.GetComponent<AudioSource>().Play();
+      //                  this.GetComponent<AudioSource>().clip = Hulk;
+      //                  this.GetComponent<AudioSource>().Play();
                         break;
                     }
                 case 3:
                     {
                         Atributos.PTime = 3;
                         Anim.SetInteger("Estado", (int) Atributos.Estados.AQUAMAN);
-                        this.GetComponent<AudioSource>().clip = AquaMan;
-                        this.GetComponent<AudioSource>().Play();
+      //                  this.GetComponent<AudioSource>().clip = AquaMan;
+      //                  this.GetComponent<AudioSource>().Play();
                         break;
                     }
                 case 4:
                     {
                         Atributos.PTime = 3;
                         Anim.SetInteger("Estado", (int)Atributos.Estados.BATMAN);
-                        this.GetComponent<AudioSource>().clip = BatMan;
-                        this.GetComponent<AudioSource>().Play();
+      //                  this.GetComponent<AudioSource>().clip = BatMan;
+      //                  this.GetComponent<AudioSource>().Play();
                         break;
                     }
                 case 5:
                     {
                         Atributos.PTime = 3;
                         Anim.SetInteger("Estado", (int)Atributos.Estados.DAREDEVIL);
-                        this.GetComponent<AudioSource>().clip = DareDevil;
-                        this.GetComponent<AudioSource>().Play();
+      //                  this.GetComponent<AudioSource>().clip = DareDevil;
+      //                  this.GetComponent<AudioSource>().Play();
                         break;
                     }
                 case 6:
                     {
                         Atributos.PTime = 3;
                         Anim.SetInteger("Estado", (int)Atributos.Estados.IRONMAN);
-                        this.GetComponent<AudioSource>().clip = IronMan;
-                        this.GetComponent<AudioSource>().Play();
+      //                  this.GetComponent<AudioSource>().clip = IronMan;
+      //                  this.GetComponent<AudioSource>().Play();
                         break;
                     }
                 case 7:
                     {
                         Atributos.PTime = 3;
                         Anim.SetInteger("Estado", (int)Atributos.Estados.SUPERMAN);
-                        this.GetComponent<AudioSource>().clip = SuperMan;
-                        this.GetComponent<AudioSource>().Play();
+      //                  this.GetComponent<AudioSource>().clip = SuperMan;
+      //                  this.GetComponent<AudioSource>().Play();
                         break;
                     }
             }
