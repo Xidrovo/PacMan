@@ -16,6 +16,7 @@ public class Atributos : MonoBehaviour {
         FLASH
     };
 
+    public static bool muerto=false;
     public static float Speed =5;
     public static int PTime=0;
 
