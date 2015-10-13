@@ -49,7 +49,7 @@ public class PacmanMove : MonoBehaviour {
         if (other.gameObject.CompareTag("Pastilla"))
         {
             other.gameObject.SetActive(false);
-            int prob=Random.Range(1, 7);
+            int prob=Random.Range(1, 8);
             switch (prob)
             {
                 case 1:
@@ -168,12 +168,45 @@ public class PacmanMove : MonoBehaviour {
         {
             if (PacmanMove.personaje == "superman")
             {
-                LanzaR = (GameObject)Instantiate(prefabRS, new Vector2(this.transform.position.x + 3, this.transform.position.y - 0.02f), this.transform.rotation);
+                if (this.transform.rotation == Quaternion.EulerAngles(0, 0, 0))
+                {
+                    LanzaR = (GameObject)Instantiate(prefabRS, new Vector2(this.transform.position.x + 3, this.transform.position.y - 0.02f), this.transform.rotation);
+                }
+                else if (Quaternion.Angle(this.transform.rotation, new Quaternion(0, 0, -0.7f, -0.7f)) == 180)
+                {
+                    LanzaR = (GameObject)Instantiate(prefabRS, new Vector2(this.transform.position.x - 0.02f, this.transform.position.y - 3), this.transform.rotation);
+                }
+                else if (Quaternion.Angle(this.transform.rotation, new Quaternion(0, 0, 0.7f, -0.7f)) == 180)
+                {
+                    LanzaR = (GameObject)Instantiate(prefabRS, new Vector2(this.transform.position.x + 0.02f, this.transform.position.y + 3), this.transform.rotation);
+                }
+                else 
+                {
+                    LanzaR = (GameObject)Instantiate(prefabRS, new Vector2(this.transform.position.x - 3, this.transform.position.y + 0.02f), this.transform.rotation);
+                }
+                
                 Invoke("MuerteLaser", 0.1f);
             }
             else
             {
-                LanzaR = (GameObject)Instantiate(prefabRI, new Vector2(this.transform.position.x + 6, this.transform.position.y - 0.02f), this.transform.rotation);
+                Debug.Log(this.transform.rotation);
+                Debug.Log(Quaternion.Angle(this.transform.rotation, new Quaternion(0, 0, -0.7f, -0.7f)));
+                if (this.transform.rotation == Quaternion.EulerAngles(0, 0, 0))
+                {
+                    LanzaR = (GameObject)Instantiate(prefabRI, new Vector2(this.transform.position.x + 6, this.transform.position.y - 0.02f), this.transform.rotation);
+                }
+                else if (Quaternion.Angle(this.transform.rotation, new Quaternion(0, 0, 0.7f, -0.7f)) == 180)
+                {
+                    LanzaR = (GameObject)Instantiate(prefabRI, new Vector2(this.transform.position.x - 0.02f, this.transform.position.y + 6), this.transform.rotation);
+                }
+                else if (Quaternion.Angle(this.transform.rotation, new Quaternion(0, 0, -0.7f, -0.7f)) == 180)
+                {
+                    LanzaR = (GameObject)Instantiate(prefabRI, new Vector2(this.transform.position.x + 0.02f, this.transform.position.y - 6), this.transform.rotation);
+                }
+                else
+                {
+                    LanzaR = (GameObject)Instantiate(prefabRI, new Vector2(this.transform.position.x - 6, this.transform.position.y + 0.02f), this.transform.rotation);
+                }
                 Invoke("MuerteLaser", 0.1f);
             }
         }
@@ -181,7 +214,6 @@ public class PacmanMove : MonoBehaviour {
 
     public void MuerteLaser()
     {
-        Debug.Log("Muere");
         Atributos.rayo--;
         Destroy(GameObject.FindGameObjectWithTag("Laser"));
     }

@@ -13,11 +13,19 @@ public class Atribb : MonoBehaviour {
 	// Update is called once per frame
     void OnCollisionEnter2D(Collision2D other)
     {
-        if (other.gameObject.CompareTag("PacMan"))
+        if (other.gameObject.CompareTag("PacMan") && PacmanMove.personaje.CompareTo("pacman") == 0)
         {
             Destroy(other.gameObject);
             Application.LoadLevel("HighScore");
         }
+        else
+        {
+            this.GetComponent<Collider2D>().isTrigger = true;
+        }
+    }
+    void OnTriggerExit2D(Collider2D other)
+    {
+        this.GetComponent<Collider2D>().isTrigger = false;
     }
     void OnTriggerEnter2D(Collider2D other)
     {
