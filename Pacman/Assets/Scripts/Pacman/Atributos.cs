@@ -19,6 +19,7 @@ public class Atributos : MonoBehaviour {
     public static bool muerto=false;
     public static float Speed =5;
     public static int PTime=0;
+    public static bool rayo = false;
     public static int score = 0;
 
 

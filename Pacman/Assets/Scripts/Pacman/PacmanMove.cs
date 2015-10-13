@@ -10,6 +10,8 @@ public class PacmanMove : MonoBehaviour {
     public AudioClip PacMan, AquaMan, BatMan, Hulk, Flash, DareDevil, SuperMan, IronMan;
     private Animator Anim;
     private int puntaje;
+    public GameObject prefabR;
+    private GameObject LanzaR;
     //{"pacman", "superman", "ironman", "hulk", "flash", "daredevil", "batman", "aquaman" };
 
     private Vector3 direccion;
@@ -72,40 +74,46 @@ public class PacmanMove : MonoBehaviour {
                     }
                 case 3:
                     {
-                        Atributos.PTime = 3;
+                        Atributos.PTime = 8;
                         Anim.SetInteger("Estado", (int) Atributos.Estados.AQUAMAN);
+                        PacmanMove.personaje = "aquaman";
       //                  this.GetComponent<AudioSource>().clip = AquaMan;
       //                  this.GetComponent<AudioSource>().Play();
                         break;
                     }
                 case 4:
                     {
-                        Atributos.PTime = 3;
+                        Atributos.PTime = 5;
                         Anim.SetInteger("Estado", (int)Atributos.Estados.BATMAN);
+                        PacmanMove.personaje = "batman";
       //                  this.GetComponent<AudioSource>().clip = BatMan;
       //                  this.GetComponent<AudioSource>().Play();
                         break;
                     }
                 case 5:
                     {
-                        Atributos.PTime = 3;
+                        Atributos.PTime = 4;
                         Anim.SetInteger("Estado", (int)Atributos.Estados.DAREDEVIL);
+                        PacmanMove.personaje = "daredevil";
       //                  this.GetComponent<AudioSource>().clip = DareDevil;
       //                  this.GetComponent<AudioSource>().Play();
                         break;
                     }
                 case 6:
                     {
-                        Atributos.PTime = 3;
+                        Atributos.PTime = 5;
                         Anim.SetInteger("Estado", (int)Atributos.Estados.IRONMAN);
+                        PacmanMove.personaje = "ironman";
+                        Atributos.rayo = true;
       //                  this.GetComponent<AudioSource>().clip = IronMan;
       //                  this.GetComponent<AudioSource>().Play();
                         break;
                     }
                 case 7:
                     {
-                        Atributos.PTime = 3;
+                        Atributos.PTime = 5;
                         Anim.SetInteger("Estado", (int)Atributos.Estados.SUPERMAN);
+                        PacmanMove.personaje = "superman";
       //                  this.GetComponent<AudioSource>().clip = SuperMan;
       //                  this.GetComponent<AudioSource>().Play();
                         break;
@@ -148,6 +156,11 @@ public class PacmanMove : MonoBehaviour {
             this.GetComponent<Transform>().Rotate(new Vector3(0,1,0) * 180);
         }
         transform.position += direccion * Atributos.Speed * Time.deltaTime;
+        if (Atributos.rayo && Input.GetKey(KeyCode.Alpha5))
+        {
+            LanzaR = (GameObject)Instantiate(prefabR,new Vector2(this.transform.position.x+6, this.transform.position.y-0.02f), Quaternion.EulerAngles(0,0,0));
+            Atributos.rayo = false;
+        }
     }
     
 }
