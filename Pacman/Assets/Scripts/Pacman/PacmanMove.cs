@@ -10,7 +10,7 @@ public class PacmanMove : MonoBehaviour {
     public AudioClip PacMan, AquaMan, BatMan, Hulk, Flash, DareDevil, SuperMan, IronMan;
     private Animator Anim;
     private int puntaje;
-    public GameObject prefabR;
+    public GameObject prefabRS, prefabRI;
     private GameObject LanzaR;
     //{"pacman", "superman", "ironman", "hulk", "flash", "daredevil", "batman", "aquaman" };
 
@@ -48,7 +48,7 @@ public class PacmanMove : MonoBehaviour {
         if (other.gameObject.CompareTag("Pastilla"))
         {
             other.gameObject.SetActive(false);
-            int prob=Random.Range(1, 8);
+            int prob=Random.Range(7, 8);
             switch (prob)
             {
                 case 1:
@@ -104,7 +104,7 @@ public class PacmanMove : MonoBehaviour {
                         Atributos.PTime = 5;
                         Anim.SetInteger("Estado", (int)Atributos.Estados.IRONMAN);
                         PacmanMove.personaje = "ironman";
-                        Atributos.rayo = true;
+                        Atributos.rayo = 1;
       //                  this.GetComponent<AudioSource>().clip = IronMan;
       //                  this.GetComponent<AudioSource>().Play();
                         break;
@@ -114,6 +114,7 @@ public class PacmanMove : MonoBehaviour {
                         Atributos.PTime = 5;
                         Anim.SetInteger("Estado", (int)Atributos.Estados.SUPERMAN);
                         PacmanMove.personaje = "superman";
+                        Atributos.rayo = 3;
       //                  this.GetComponent<AudioSource>().clip = SuperMan;
       //                  this.GetComponent<AudioSource>().Play();
                         break;
@@ -126,6 +127,7 @@ public class PacmanMove : MonoBehaviour {
             other.gameObject.SetActive(false);
             puntaje++;
             textoPuntaje.text = "Score: " + puntaje.ToString();
+            Atributos.score = puntaje;
         }
     }
 
@@ -156,11 +158,26 @@ public class PacmanMove : MonoBehaviour {
             this.GetComponent<Transform>().Rotate(new Vector3(0,1,0) * 180);
         }
         transform.position += direccion * Atributos.Speed * Time.deltaTime;
-        if (Atributos.rayo && Input.GetKey(KeyCode.Alpha5))
+        if (Atributos.rayo > 0 && Input.GetKey(KeyCode.Alpha5))
         {
-            LanzaR = (GameObject)Instantiate(prefabR,new Vector2(this.transform.position.x+6, this.transform.position.y-0.02f), Quaternion.EulerAngles(0,0,0));
-            Atributos.rayo = false;
+            if (PacmanMove.personaje == "superman")
+            {
+                LanzaR = (GameObject)Instantiate(prefabRS, new Vector2(this.transform.position.x + 6, this.transform.position.y - 0.02f), Quaternion.EulerAngles(0, 0, 0));
+                Invoke("MuerteLaser", 0.1f);
+            }
+            else
+            {
+                LanzaR = (GameObject)Instantiate(prefabRI, new Vector2(this.transform.position.x + 6, this.transform.position.y - 0.02f), Quaternion.EulerAngles(0, 0, 0));
+                Invoke("MuerteLaser", 0.1f);
+            }
+            Atributos.rayo--;
+            Debug.Log(Atributos.rayo);
         }
     }
-    
+
+    public void MuerteLaser()
+    {
+        Debug.Log("Muere");
+        Destroy(GameObject.FindGameObjectWithTag("Laser"));
+    }
 }

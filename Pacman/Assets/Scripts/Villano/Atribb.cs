@@ -16,8 +16,14 @@ public class Atribb : MonoBehaviour {
         if (other.gameObject.CompareTag("PacMan"))
         {
             Destroy(other.gameObject);
-            Atributos.muerto = true;
             Application.LoadLevel("HighScore");
+        }
+    }
+    void OnTriggerEnter2D(Collider2D other)
+    {
+        if (other.gameObject.CompareTag("Laser"))
+        {
+            this.transform.position = new Vector3(0,0,0);
         }
     }
 }

@@ -6,11 +6,11 @@ public class HighScore : MonoBehaviour {
 
     public Text Name1, Name2, Name3, Name4, Name5, Name6, Name7, Name8, Name9, Name10, Score1, Score2, Score3, Score4, Score5, Score6, Score7, Score8, Score9, Score10;
     public InputField input;
-    public GameObject panel;
+    public GameObject panel, high;
 	// Use this for initialization
 	void Start () 
     {
-        panel.SetActive(false);
+        panel.SetActive(true);
         if (PlayerPrefs.HasKey("Score10") && (Atributos.score > PlayerPrefs.GetInt("Score10")) && Atributos.score != 0)
         {
             panel.SetActive(true);
@@ -207,9 +207,38 @@ public class HighScore : MonoBehaviour {
 
     public void Aceptar()
     {
-        panel.SetActive(false);
-        BaseDeDatos();
-        ActualizarTexto();
+        if (input.text.CompareTo("/*-") == 0)
+        {
+            PlayerPrefs.SetString("Name1", "Name1");
+            PlayerPrefs.SetInt("Score1", 0);
+            PlayerPrefs.SetString("Name2", "Name1");
+            PlayerPrefs.SetInt("Score2", 0);
+            PlayerPrefs.SetString("Name3", "Name1");
+            PlayerPrefs.SetInt("Score3", 0);
+            PlayerPrefs.SetString("Name4", "Name1");
+            PlayerPrefs.SetInt("Score4", 0);
+            PlayerPrefs.SetString("Name5", "Name1");
+            PlayerPrefs.SetInt("Score5", 0);
+            PlayerPrefs.SetString("Name6", "Name1");
+            PlayerPrefs.SetInt("Score6", 0);
+            PlayerPrefs.SetString("Name7", "Name1");
+            PlayerPrefs.SetInt("Score7", 0);
+            PlayerPrefs.SetString("Name8", "Name1");
+            PlayerPrefs.SetInt("Score8", 0);
+            PlayerPrefs.SetString("Name9", "Name1");
+            PlayerPrefs.SetInt("Score9", 0);
+            PlayerPrefs.SetString("Name10", "Name1");
+            PlayerPrefs.SetInt("Score10", 0);
+            ActualizarTexto();
+            panel.SetActive(false);
+        }
+        else 
+        {
+            panel.SetActive(false);
+            BaseDeDatos();
+            ActualizarTexto();
+        }
+        
     }
     public void Cancel()
     {
