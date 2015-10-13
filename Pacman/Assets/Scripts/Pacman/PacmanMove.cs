@@ -24,6 +24,7 @@ public class PacmanMove : MonoBehaviour {
         textoPuntaje.text = "Score: " + puntaje.ToString();
         InvokeRepeating("TiempoDePoder",0,1);
         direccion = Vector3.right;
+//        InvokeRepeating("Rayo",0,0.05f);
         Anim = this.GetComponent<Animator>();
     }
 
@@ -48,7 +49,7 @@ public class PacmanMove : MonoBehaviour {
         if (other.gameObject.CompareTag("Pastilla"))
         {
             other.gameObject.SetActive(false);
-            int prob=Random.Range(7, 8);
+            int prob=Random.Range(6, 6);
             switch (prob)
             {
                 case 1:
@@ -158,26 +159,29 @@ public class PacmanMove : MonoBehaviour {
             this.GetComponent<Transform>().Rotate(new Vector3(0,1,0) * 180);
         }
         transform.position += direccion * Atributos.Speed * Time.deltaTime;
-        if (Atributos.rayo > 0 && Input.GetKey(KeyCode.Alpha5))
+    }
+
+    public void Update()
+    {
+        if (Atributos.rayo >0 && Input.GetKeyDown(KeyCode.Alpha5))
         {
             if (PacmanMove.personaje == "superman")
             {
-                LanzaR = (GameObject)Instantiate(prefabRS, new Vector2(this.transform.position.x + 6, this.transform.position.y - 0.02f), Quaternion.EulerAngles(0, 0, 0));
+                LanzaR = (GameObject)Instantiate(prefabRS, new Vector2(this.transform.position.x + 3, this.transform.position.y - 0.02f), this.transform.rotation);
                 Invoke("MuerteLaser", 0.1f);
             }
             else
             {
-                LanzaR = (GameObject)Instantiate(prefabRI, new Vector2(this.transform.position.x + 6, this.transform.position.y - 0.02f), Quaternion.EulerAngles(0, 0, 0));
+                LanzaR = (GameObject)Instantiate(prefabRI, new Vector2(this.transform.position.x + 6, this.transform.position.y - 0.02f), this.transform.rotation);
                 Invoke("MuerteLaser", 0.1f);
             }
-            Atributos.rayo--;
-            Debug.Log(Atributos.rayo);
         }
     }
 
     public void MuerteLaser()
     {
         Debug.Log("Muere");
+        Atributos.rayo--;
         Destroy(GameObject.FindGameObjectWithTag("Laser"));
     }
 }
