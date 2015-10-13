@@ -17,7 +17,10 @@ public class Teleport : MonoBehaviour {
         }
         if (Coll.gameObject == TeleportB)
         {
-            this.transform.position = TeleportA.transform.position;
+            Temp = TeleportA.transform.position;
+            Temp.x = TeleportA.transform.position.x + 0.5f;
+
+            this.transform.position = Temp;
         }
     }
 }

@@ -49,7 +49,7 @@ public class PacmanMove : MonoBehaviour {
         if (other.gameObject.CompareTag("Pastilla"))
         {
             other.gameObject.SetActive(false);
-            int prob=Random.Range(6, 6);
+            int prob=Random.Range(1, 7);
             switch (prob)
             {
                 case 1:
@@ -59,7 +59,8 @@ public class PacmanMove : MonoBehaviour {
                         Atributos.Speed *= 2.2f;
                         //this.GetComponent<Animator>().runtimeAnimatorController = flash;
                         Anim.SetInteger("Estado",(int) Atributos.Estados.FLASH);
-      //                  this.GetComponent<AudioSource>().clip = Flash;
+                        this.GetComponent<AudioSource>().clip = Flash;
+                        this.GetComponent<AudioSource>().Play();
                         break;
                     }
                 case 2:
@@ -69,8 +70,8 @@ public class PacmanMove : MonoBehaviour {
                         Anim.SetInteger("Estado", (int) Atributos.Estados.HULK);
                         PacmanMove.personaje = "hulk";
                         Atributos.Speed = 3;
-      //                  this.GetComponent<AudioSource>().clip = Hulk;
-      //                  this.GetComponent<AudioSource>().Play();
+                        this.GetComponent<AudioSource>().clip = Hulk;
+                        this.GetComponent<AudioSource>().Play();
                         break;
                     }
                 case 3:
@@ -78,8 +79,8 @@ public class PacmanMove : MonoBehaviour {
                         Atributos.PTime = 8;
                         Anim.SetInteger("Estado", (int) Atributos.Estados.AQUAMAN);
                         PacmanMove.personaje = "aquaman";
-      //                  this.GetComponent<AudioSource>().clip = AquaMan;
-      //                  this.GetComponent<AudioSource>().Play();
+                        this.GetComponent<AudioSource>().clip = AquaMan;
+                        this.GetComponent<AudioSource>().Play();
                         break;
                     }
                 case 4:
@@ -87,8 +88,8 @@ public class PacmanMove : MonoBehaviour {
                         Atributos.PTime = 5;
                         Anim.SetInteger("Estado", (int)Atributos.Estados.BATMAN);
                         PacmanMove.personaje = "batman";
-      //                  this.GetComponent<AudioSource>().clip = BatMan;
-      //                  this.GetComponent<AudioSource>().Play();
+                        this.GetComponent<AudioSource>().clip = BatMan;
+                        this.GetComponent<AudioSource>().Play();
                         break;
                     }
                 case 5:
@@ -96,8 +97,8 @@ public class PacmanMove : MonoBehaviour {
                         Atributos.PTime = 4;
                         Anim.SetInteger("Estado", (int)Atributos.Estados.DAREDEVIL);
                         PacmanMove.personaje = "daredevil";
-      //                  this.GetComponent<AudioSource>().clip = DareDevil;
-      //                  this.GetComponent<AudioSource>().Play();
+                        this.GetComponent<AudioSource>().clip = DareDevil;
+                        this.GetComponent<AudioSource>().Play();
                         break;
                     }
                 case 6:
@@ -106,8 +107,8 @@ public class PacmanMove : MonoBehaviour {
                         Anim.SetInteger("Estado", (int)Atributos.Estados.IRONMAN);
                         PacmanMove.personaje = "ironman";
                         Atributos.rayo = 1;
-      //                  this.GetComponent<AudioSource>().clip = IronMan;
-      //                  this.GetComponent<AudioSource>().Play();
+                        this.GetComponent<AudioSource>().clip = IronMan;
+                        this.GetComponent<AudioSource>().Play();
                         break;
                     }
                 case 7:
@@ -116,8 +117,8 @@ public class PacmanMove : MonoBehaviour {
                         Anim.SetInteger("Estado", (int)Atributos.Estados.SUPERMAN);
                         PacmanMove.personaje = "superman";
                         Atributos.rayo = 3;
-      //                  this.GetComponent<AudioSource>().clip = SuperMan;
-      //                  this.GetComponent<AudioSource>().Play();
+                        this.GetComponent<AudioSource>().clip = SuperMan;
+                        this.GetComponent<AudioSource>().Play();
                         break;
                     }
             }
