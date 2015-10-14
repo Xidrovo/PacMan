@@ -7,10 +7,10 @@ public class PacmanMove : MonoBehaviour {
     public static string personaje;
 //    public RuntimeAnimatorController default1, flash, superman, hulk, daredevil,aquaman;
     public Text textoPuntaje;
-    public AudioClip PacMan, AquaMan, BatMan, Hulk, Flash, DareDevil, SuperMan, IronMan;
+    public AudioClip  AquaMan, BatMan, Hulk, Flash, DareDevil, SuperMan, IronMan;
     private Animator Anim;
     private int puntaje;
-    public GameObject prefabRS, prefabRI;
+    public GameObject prefabRS, prefabRI, Fondo;
     private GameObject LanzaR;
     //{"pacman", "superman", "ironman", "hulk", "flash", "daredevil", "batman", "aquaman" };
 
@@ -39,6 +39,7 @@ public class PacmanMove : MonoBehaviour {
             //            this.GetComponent<Animator>().runtimeAnimatorController = default1;
             Anim.SetInteger("Estado", (int)Atributos.Estados.PACMAN);
             Atributos.PTime = 0;
+            Fondo.GetComponent<SpriteRenderer>().sortingOrder = 0;
             PacmanMove.personaje = "pacman";
             Atributos.Speed = 5;
         }
@@ -49,7 +50,7 @@ public class PacmanMove : MonoBehaviour {
         if (other.gameObject.CompareTag("Pastilla"))
         {
             other.gameObject.SetActive(false);
-            int prob=Random.Range(1, 8);
+            int prob=Random.Range(4, 4);
             switch (prob)
             {
                 case 1:
@@ -88,6 +89,8 @@ public class PacmanMove : MonoBehaviour {
                         Atributos.PTime = 5;
                         Anim.SetInteger("Estado", (int)Atributos.Estados.BATMAN);
                         PacmanMove.personaje = "batman";
+                        puntaje *= 2;
+                        Atributos.score = puntaje;
                         this.GetComponent<AudioSource>().clip = BatMan;
                         this.GetComponent<AudioSource>().Play();
                         break;
@@ -99,6 +102,7 @@ public class PacmanMove : MonoBehaviour {
                         PacmanMove.personaje = "daredevil";
                         this.GetComponent<AudioSource>().clip = DareDevil;
                         this.GetComponent<AudioSource>().Play();
+                        Fondo.GetComponent<SpriteRenderer>().sortingOrder = 8;
                         break;
                     }
                 case 6:
@@ -209,6 +213,10 @@ public class PacmanMove : MonoBehaviour {
                 }
                 Invoke("MuerteLaser", 0.1f);
             }
+        }
+        if (GameObject.FindGameObjectWithTag("Punto")==null)
+        {
+            Application.LoadLevel("HighScore");
         }
     }
 

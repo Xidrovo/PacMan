@@ -13,12 +13,16 @@ public class Atribb : MonoBehaviour {
 	// Update is called once per frame
     void OnCollisionEnter2D(Collision2D other)
     {
-        if (other.gameObject.CompareTag("PacMan") && PacmanMove.personaje.CompareTo("pacman") == 0)
+        if (other.gameObject.CompareTag("PacMan"))
         {
-            Destroy(other.gameObject);
-            Application.LoadLevel("HighScore");
+            if (PacmanMove.personaje.CompareTo("pacman") == 0)
+            {
+                Destroy(other.gameObject);
+                Application.LoadLevel("HighScore");
+            }
+            
         }
-        else
+        else if (!other.gameObject.CompareTag("Paredes"))
         {
             this.GetComponent<Collider2D>().isTrigger = true;
         }
