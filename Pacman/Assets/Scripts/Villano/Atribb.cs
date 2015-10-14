@@ -7,7 +7,8 @@ public class Atribb : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-        Physics.IgnoreLayerCollision(8, 9);
+        Physics2D.IgnoreLayerCollision(8, 9);
+        Physics2D.IgnoreLayerCollision(9, 9);
         Atribb.speedo = 5;
 	}
 	
