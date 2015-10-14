@@ -4,12 +4,11 @@ using System.Collections;
 public class Atribb : MonoBehaviour {
 
     public static float speedo;
-    public float speed;
 
 	// Use this for initialization
 	void Start () {
         Physics.IgnoreLayerCollision(8, 9);
-        Atribb.speedo = speed;
+        Atribb.speedo = 5;
 	}
 	
 	// Update is called once per frame
