@@ -137,6 +137,7 @@ public class PacmanMove : MonoBehaviour {
         }
     }
 
+
     void FixedUpdate () 
     {
         if (Input.GetKey(KeyCode.UpArrow) )

@@ -3,11 +3,13 @@ using System.Collections;
 
 public class Atribb : MonoBehaviour {
 
-
+    public static float speedo;
+    public float speed;
 
 	// Use this for initialization
 	void Start () {
-	
+        Physics.IgnoreLayerCollision(8, 9);
+        Atribb.speedo = speed;
 	}
 	
 	// Update is called once per frame
@@ -20,11 +22,11 @@ public class Atribb : MonoBehaviour {
                 Destroy(other.gameObject);
                 Application.LoadLevel("HighScore");
             }
+            else //if (!other.gameObject.CompareTag("Paredes"))
+            {
+                this.GetComponent<Collider2D>().isTrigger = true;
+            }
             
-        }
-        else if (!other.gameObject.CompareTag("Paredes"))
-        {
-            this.GetComponent<Collider2D>().isTrigger = true;
         }
     }
     void OnTriggerExit2D(Collider2D other)
