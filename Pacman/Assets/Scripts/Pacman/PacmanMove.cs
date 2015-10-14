@@ -50,7 +50,7 @@ public class PacmanMove : MonoBehaviour {
         if (other.gameObject.CompareTag("Pastilla"))
         {
             other.gameObject.SetActive(false);
-            int prob=Random.Range(4, 4);
+            int prob=Random.Range(1, 7);
             switch (prob)
             {
                 case 1:
